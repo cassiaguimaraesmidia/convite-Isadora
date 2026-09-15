@@ -150,3 +150,21 @@ body{display:flex;justify-content:center;overflow:hidden;font-family:Georgia,"Ti
   .frase-data-texto{font-size:15px;line-height:1.03}
   .frase-data-coracao{right:-1%;top:1%;width:29px;height:29px}
 }
+
+/* Pausa final: microanimações sobre o último frame enquanto a segunda música começa. */
+.pausa-final-animada{position:absolute;inset:0;z-index:12;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .25s ease}
+.pausa-final-animada.visivel{opacity:1;visibility:visible}
+.sparkle,.mini-heart,.bolinha,.brush-stroke{position:absolute;will-change:transform,opacity}
+.sparkle{color:#fff;font-size:clamp(22px,6vw,42px);text-shadow:0 2px 8px rgba(90,70,50,.18);animation:pausaSparkle 1.25s ease-in-out infinite}
+.s1{left:17%;top:30%}.s2{right:18%;top:25%;animation-delay:.28s}.s3{left:69%;top:48%;animation-delay:.55s}
+.mini-heart{color:#c84b57;font-size:clamp(18px,5vw,34px);text-shadow:0 2px 5px rgba(90,40,40,.15);animation:pausaHeart 1.6s ease-in-out infinite}
+.h1{left:28%;top:20%}.h2{right:26%;top:62%;animation-delay:.45s}
+.bolinha{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.72);box-shadow:0 0 0 6px rgba(255,255,255,.12);animation:pausaDot 1.8s ease-in-out infinite}
+.b1{left:12%;top:52%}.b2{right:12%;top:40%;animation-delay:.35s}.b3{left:51%;top:72%;animation-delay:.7s}
+.brush-stroke{height:5px;width:58px;border-radius:99px;background:rgba(255,255,255,.45);filter:blur(.2px);animation:pausaStroke 1.7s ease-in-out infinite}
+.r1{left:7%;top:67%;transform:rotate(-18deg)}.r2{right:7%;top:31%;transform:rotate(16deg);animation-delay:.5s}
+@keyframes pausaSparkle{0%,100%{opacity:.15;transform:scale(.65) rotate(-10deg)}50%{opacity:.95;transform:scale(1.15) rotate(10deg)}}
+@keyframes pausaHeart{0%,100%{opacity:.25;transform:translateY(5px) scale(.78) rotate(-8deg)}50%{opacity:.95;transform:translateY(-8px) scale(1.08) rotate(6deg)}}
+@keyframes pausaDot{0%,100%{opacity:.1;transform:translateY(5px) scale(.7)}50%{opacity:.75;transform:translateY(-10px) scale(1.2)}}
+@keyframes pausaStroke{0%,100%{opacity:.1;transform:translateX(0) scaleX(.7)}50%{opacity:.8;transform:translateX(12px) scaleX(1.08)}}
+@media(max-width:520px){.sparkle{font-size:26px}.mini-heart{font-size:24px}.bolinha{width:8px;height:8px}.brush-stroke{width:44px;height:4px}}

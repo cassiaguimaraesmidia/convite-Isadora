@@ -5,16 +5,17 @@ const video=$('video-abertura');
 const videoData=$('video-data');
 const musica=new Audio('imagens/musica.mp3');
 musica.loop=true; musica.preload='auto'; musica.volume=0.34;
-let musicaAtiva=false, musicaTimer=null;
+let musicaAtiva=false, musicaTimer=null, musicaPreparada=false, transicaoTimer=null, musicaDurantePausa=false;
 
 // O preview fica somente no trecho inicial: sem a aparição do pincel.
 const LOOP_FIM_PREVIEW=2.55;
 const ATRASO_MUSICA=1200;
+const PAUSA_ARTE_FINAL=3000;
 
 function mostrar(nome){
   Object.entries(telas).forEach(([key,el])=>{const ativo=key===nome; el.classList.toggle('ativa',ativo); el.setAttribute('aria-hidden',String(!ativo));});
   if(nome==='inicial') iniciarPreview(); else pararPreview();
-  if(nome==='data'){ iniciarVideoData(); iniciarMusicaComAtraso(ATRASO_MUSICA); } else { pararVideoData(); }
+  if(nome==='data'){ iniciarVideoData(); if(!musicaDurantePausa) iniciarMusicaComAtraso(ATRASO_MUSICA); musicaDurantePausa=false; } else { pararVideoData(); }
   if(nome==='presentes') iniciarMusicaComAtraso(450);
 }
 function iniciarPreview(){preview.currentTime=0; preview.muted=true; preview.play().catch(()=>{});}
@@ -31,20 +32,35 @@ function pararVideoData(){
 }
 preview.addEventListener('timeupdate',()=>{if(preview.currentTime>=LOOP_FIM_PREVIEW){preview.currentTime=0; preview.play().catch(()=>{});}});
 
+function prepararMusicaNoToque(){
+  // No iPhone, uma reprodução iniciada diretamente pelo toque do usuário
+  // recebe permissão. Mantemos o áudio inaudível durante a abertura e
+  // liberamos o volume somente depois da transição.
+  if(musicaPreparada) return;
+  musicaPreparada=true;
+  musica.muted=true;
+  musica.volume=0.34;
+  musica.currentTime=0;
+  musica.play().catch(()=>{ musicaPreparada=false; });
+}
 function iniciarMusicaComAtraso(ms=ATRASO_MUSICA){
   clearTimeout(musicaTimer);
-  if(musicaAtiva){$('controle-musica').hidden=false; return;}
   musicaTimer=setTimeout(()=>{
+    musica.currentTime=0;
+    musica.muted=false;
+    musica.volume=0.34;
     musicaAtiva=true;
     musica.play().catch(()=>{});
     $('controle-musica').hidden=false;
   },ms);
 }
-function pararMusica(){clearTimeout(musicaTimer); musica.pause(); musica.currentTime=0; musicaAtiva=false; $('controle-musica').hidden=true;}
+function pararMusica(){clearTimeout(musicaTimer); musica.pause(); musica.currentTime=0; musica.muted=false; musica.volume=0.34; musicaAtiva=false; musicaPreparada=false; $('controle-musica').hidden=true;}
 
 function abrirVideo(){
   pararPreview();
   clearTimeout(musicaTimer);
+  clearTimeout(transicaoTimer);
+  prepararMusicaNoToque();
   mostrar('video');
   video.currentTime=0; video.muted=false; video.volume=0.9;
   const p=video.play();
@@ -52,8 +68,20 @@ function abrirVideo(){
 }
 setTimeout(()=>mostrar('inicial'),2300);
 $('abrir-convite').addEventListener('click',abrirVideo);
-$('pular-video').addEventListener('click',()=>{video.pause(); mostrar('data');});
-video.addEventListener('ended',()=>mostrar('data'));
+$('pular-video').addEventListener('click',()=>{clearTimeout(transicaoTimer); $('pausa-final-animada').classList.remove('visivel'); video.pause(); mostrar('data');});
+video.addEventListener('ended',()=>{
+  // A última arte fica parada por 3s, mas agora a segunda música entra
+  // exatamente nesse momento. Os pequenos elementos animados aparecem
+  // por cima para a pausa parecer uma transição viva, não um travamento.
+  clearTimeout(transicaoTimer);
+  musicaDurantePausa=true;
+  iniciarMusicaComAtraso(0);
+  $('pausa-final-animada').classList.add('visivel');
+  transicaoTimer=setTimeout(()=>{
+    $('pausa-final-animada').classList.remove('visivel');
+    mostrar('data');
+  },PAUSA_ARTE_FINAL);
+});
 
 const LINK_CONFIRMAR='https://docs.google.com/forms/d/e/1FAIpQLSetxCkuQS563eoby-LNiGRh7A2S8ALm2wLp9LdRiNbA2oNkvA/viewform';
 $('btn-confirmar').addEventListener('click',()=>window.open(LINK_CONFIRMAR,'_blank','noopener'));
