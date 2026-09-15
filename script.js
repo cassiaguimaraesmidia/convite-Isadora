@@ -9,7 +9,7 @@ let musicaAtiva=false, musicaTimer=null;
 
 // O preview fica somente no trecho inicial: sem a aparição do pincel.
 const LOOP_FIM_PREVIEW=2.55;
-const ATRASO_MUSICA=1100;
+const ATRASO_MUSICA=1200;
 
 function mostrar(nome){
   Object.entries(telas).forEach(([key,el])=>{const ativo=key===nome; el.classList.toggle('ativa',ativo); el.setAttribute('aria-hidden',String(!ativo));});

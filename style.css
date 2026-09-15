@@ -135,3 +135,18 @@ body{display:flex;justify-content:center;overflow:hidden;font-family:Georgia,"Ti
 @media(max-width:520px){.acoes{gap:12px}.botao{min-height:98px;padding:13px 12px 13px 10px;border-radius:29px}.icone{flex-basis:52px;width:52px;height:52px}.texto-botao{font-size:18px}.seta{font-size:39px}.contador{width:74%;padding:7px 10px 9px}.box{min-width:53px;padding:8px 2px 7px}.box strong{font-size:20px}.contador-numeros{gap:5px}.coracao-gif{width:38px;height:38px}.coracao-esq{left:-26px}.coracao-dir{right:-26px}}
 @media(max-width:390px){.botao{min-height:92px}.texto-botao{font-size:16px}.icone{flex-basis:47px;width:47px;height:47px}.circular-check{font-size:31px}.gift{font-size:24px}.seta{font-size:34px}.contador{width:78%}.box{min-width:48px}.box strong{font-size:18px}.box span{font-size:7px}.separador{font-size:16px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Frase sobreposta à nova arte de data sem frase embutida */
+.frase-data{position:absolute;z-index:5;top:2.2%;left:8%;width:80%;display:flex;align-items:flex-start;justify-content:center;pointer-events:none}
+.frase-data-texto{font:400 clamp(21px,4.1vw,36px)/1.08 "Segoe Print","Bradley Hand","Comic Sans MS",cursive;color:#6c3d23;text-align:center;text-shadow:0 1px 0 rgba(255,255,255,.42);letter-spacing:.1px}
+.frase-data-coracao{position:absolute;right:1.5%;top:2.5%;width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 3px 5px rgba(150,55,70,.18));animation:coracaoVivo 2s ease-in-out infinite}
+@media(max-width:520px){
+  .frase-data{top:2.6%;left:6%;width:82%}
+  .frase-data-texto{font-size:clamp(17px,4.9vw,24px);line-height:1.08}
+  .frase-data-coracao{right:2.5%;top:2.5%;width:34px;height:34px}
+}
+@media(max-width:390px){
+  .frase-data{top:2.8%;left:5%;width:84%}
+  .frase-data-texto{font-size:17px;line-height:1.06}
+  .frase-data-coracao{right:2.5%;top:2.8%;width:31px;height:31px}
+}
