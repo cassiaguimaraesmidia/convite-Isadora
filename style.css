@@ -1,0 +1,137 @@
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;background:#ecf8fb}
+body{display:flex;justify-content:center;overflow:hidden;font-family:Georgia,"Times New Roman",serif}
+.convite{position:relative;width:min(100vw,600px);height:100dvh;overflow:hidden;background:#eaf7fb;isolation:isolate}
+.tela{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .55s ease,visibility .55s ease}
+.tela.ativa{opacity:1;visibility:visible;pointer-events:auto}
+.tela-logo{z-index:50;background:#fff;display:flex;align-items:center;justify-content:center}
+.logo{width:88%;max-width:520px;max-height:78dvh;object-fit:contain;animation:entrada .9s ease both}
+.tela-inicial,.tela-video{background:#def3fa}
+.video-preview,.video-abertura{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.solzinho{position:absolute;left:3%;top:3%;width:20%;max-width:120px;z-index:5;filter:drop-shadow(0 5px 10px rgba(255,170,40,.18));transform-origin:center;animation:solVivo 2.6s ease-in-out infinite}
+.paleta-hotspot{position:absolute;left:29%;top:27%;width:42%;height:26%;border:0;background:transparent;cursor:pointer;z-index:10;-webkit-tap-highlight-color:transparent}
+.paleta-hotspot .pulso{position:absolute;inset:14%;border-radius:50%;box-shadow:0 0 0 0 rgba(255,255,255,.75);animation:pulse 1.9s ease-in-out infinite}
+.dica{position:absolute;left:50%;top:108%;transform:translateX(-50%);white-space:nowrap;padding:9px 15px;border-radius:24px;background:rgba(255,255,255,.82);color:#744f37;font:700 13px Georgia,serif;box-shadow:0 6px 18px rgba(70,55,45,.14);animation:flutuar 2.2s ease-in-out infinite}
+.pular-video{position:absolute;right:14px;bottom:15px;border:1px solid rgba(255,255,255,.7);border-radius:24px;padding:9px 14px;background:rgba(72,54,38,.25);color:#fff;font:600 12px Georgia,serif;backdrop-filter:blur(6px);cursor:pointer;z-index:20}
+
+.tela-data{z-index:20;background:#dff3fa;overflow:hidden}
+.video-data{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;display:block}
+.tela-data::before{display:none}
+.nuvens{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.nuvem{position:absolute;opacity:.42;filter:drop-shadow(0 5px 8px rgba(126,153,178,.08));will-change:transform}
+.n1{width:28%;top:8%;left:-18%;animation:nuvem1 27s linear infinite}
+.n2{width:24%;top:24%;left:55%;animation:nuvem2 34s linear infinite}
+.n3{width:32%;top:36%;left:-26%;animation:nuvem3 38s linear infinite}
+.n4{width:26%;top:52%;left:60%;animation:nuvem4 31s linear infinite}
+.nuvens-presentes{z-index:4;opacity:.75}
+.nuvens-presentes .n1{top:7%;width:25%}.nuvens-presentes .n3{top:23%;width:28%}
+
+.contador{position:absolute;z-index:6;left:50%;top:47.2%;transform:translateX(-50%);width:72%;padding:8px 18px 10px;border-radius:26px;background:rgba(255,255,255,.92);border:1px solid rgba(150,130,120,.12);box-shadow:0 9px 25px rgba(85,86,70,.14);text-align:center;color:#5f3d28}
+.contador-titulo{font:700 11px/1 Georgia,serif;letter-spacing:5px;margin-bottom:8px}
+.contador-numeros{display:flex;align-items:center;justify-content:center;gap:7px}
+.box{width:23%;min-width:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px 7px;border-radius:15px}
+.box strong{font:700 22px/1 Arial,sans-serif;color:#3c261b}.box span{font:700 8px/1.2 Arial,sans-serif;letter-spacing:.6px;margin-top:4px;color:#432f26}
+.box-pink{background:#f7d2e2}.box-yellow{background:#fae8bc}.box-blue{background:#bae0f6}.box-purple{background:#d9c7eb}
+.separador{font:700 20px/1 Georgia,serif;color:#6d574d;margin-top:-4px}
+.coracao-gif{position:absolute;width:42px;height:42px;object-fit:contain;z-index:7;filter:drop-shadow(0 3px 4px rgba(120,65,65,.18));animation:coracaoVivo 2s ease-in-out infinite}
+.coracao-esq{left:-29px;top:38%;transform:rotate(-10deg)}
+.coracao-dir{right:-29px;top:60%;transform:rotate(10deg);animation-delay:.35s}
+
+.acoes{position:absolute;z-index:8;left:7.7%;right:7.7%;top:61.1%;display:flex;gap:18px}
+.botao{position:relative;width:50%;min-height:112px;border:0;border-radius:34px;cursor:pointer;display:flex;align-items:center;gap:13px;padding:16px 20px 16px 14px;text-align:left;transition:transform .16s ease,box-shadow .16s ease;overflow:hidden;box-shadow:0 9px 0 rgba(70,65,60,.09),0 12px 24px rgba(70,65,60,.17),inset 0 0 0 3px rgba(255,255,255,.62);animation:botaoRespira 3.5s ease-in-out infinite}
+.botao:nth-child(2){animation-delay:.25s}
+.botao::after{content:"";position:absolute;left:10px;right:10px;top:8px;height:18px;border-radius:18px;background:rgba(255,255,255,.38);pointer-events:none}
+.botao:hover{transform:translateY(-2px)}.botao:active{transform:translateY(2px) scale(.98);box-shadow:0 4px 0 rgba(70,65,60,.08),0 6px 13px rgba(70,65,60,.16),inset 0 0 0 3px rgba(255,255,255,.62)}
+.botao-pink{background:linear-gradient(180deg,#ff9fc4 0%,#f575a6 100%);border:3px solid #f0679b;color:#4b2032}.botao-blue{background:linear-gradient(180deg,#9cdcf9 0%,#65c4f3 100%);border:3px solid #59b8ee;color:#154c74}
+.icone{flex:0 0 58px;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 9px rgba(65,55,48,.17),inset 0 0 0 2px rgba(255,255,255,.45);font-family:Arial,sans-serif}
+.circular-check{background:#d34b78;color:#fff;font-size:37px;font-weight:900;border:4px solid rgba(255,255,255,.45)}
+.gift{background:#1581bb;color:#fff;font-size:29px;border:4px solid rgba(255,255,255,.45)}
+.texto-botao{font:700 clamp(18px,4vw,24px)/.98 Arial,sans-serif;letter-spacing:-.3px;position:relative;z-index:2}.seta{margin-left:auto;font:400 44px/1 Arial,sans-serif;position:relative;z-index:2;opacity:.9}
+.controle-musica{position:absolute;z-index:100;right:14px;top:14px;width:48px;height:48px;border:2px solid rgba(255,145,185,.8);border-radius:50%;background:linear-gradient(180deg,#ffd0e3,#ffabc9);color:#6b2f49;font:24px Georgia,serif;box-shadow:0 6px 16px rgba(80,60,60,.14),inset 0 0 0 2px rgba(255,255,255,.6);cursor:pointer}
+
+.tela-presentes{z-index:20;background:#dff3fa}.arte-presentes{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.area-presente{position:absolute;border:0;background:transparent;cursor:pointer;z-index:6;-webkit-tap-highlight-color:transparent;border-radius:50%}
+.calcado{left:2%;top:39%;width:27%;height:18%}.roupas{left:49%;top:39%;width:27%;height:18%}.livros{left:4%;top:57%;width:29%;height:18%}.brinquedos{left:49%;top:57%;width:30%;height:18%}
+.voltar{position:absolute;top:14px;left:14px;z-index:10;border:1px solid rgba(120,90,70,.22);border-radius:22px;background:rgba(255,255,255,.78);color:#6f4e3b;padding:8px 12px;font:700 12px Georgia,serif;box-shadow:0 6px 16px rgba(60,50,40,.12);cursor:pointer;backdrop-filter:blur(4px)}
+
+
+/* Rabiscos infantis em giz de cera: camadas decorativas animadas */
+
+.rabiscos{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.rabisco{position:absolute;display:block;object-fit:contain;user-select:none;will-change:transform,opacity;filter:drop-shadow(0 4px 5px rgba(70,55,45,.08));opacity:.0;transform-origin:center}
+
+/* Elementos decorativos distribuídos nas bordas, sem cobrir textos, timer ou botões. */
+.giz-sol{display:none}
+.giz-maca{width:9%;right:-5%;top:17%;animation:applePeek 10s ease-in-out infinite}
+.giz-arco{width:14%;left:-13%;top:44%;animation:rainbowFloat 12s ease-in-out infinite}
+.giz-borboletas{width:17%;left:-24%;top:31%;animation:butterflyTravel 17s linear infinite;opacity:0}
+.giz-borboletas-2{width:14%;left:-20%;top:62%;animation:butterflyTravel2 20s linear infinite 8s;opacity:0}
+.giz-flor{width:10%;right:-7%;bottom:17%;animation:flowerPeek 11s ease-in-out infinite}
+.giz-mundo{width:9%;right:-9%;top:67%;animation:worldDrift 15s ease-in-out infinite 2s}
+.giz-abelha{width:12%;left:-18%;top:56%;animation:beeTravel 13s linear infinite 3s;opacity:0}
+.giz-abelha-2{width:10%;left:-16%;top:25%;animation:beeTravel2 16s linear infinite 9s;opacity:0}
+.giz-giz{width:10%;right:2%;bottom:9%;left:auto;animation:crayonBob 6.5s ease-in-out infinite}
+.giz-joaninha{width:8%;left:-7%;bottom:24%;animation:ladybugTravel 14s linear infinite 4s;opacity:0}
+
+/* Na tela de presentes, mantenha os doodles nas margens e nunca sobre os itens. */
+.rabiscos-presentes{z-index:5;opacity:.72}
+.rabiscos-presentes .giz-arco{top:13%;left:-7%;width:14%}
+.rabiscos-presentes .giz-borboletas{top:27%;right:-6%;left:auto;width:16%;animation:butterflyTravelBack 18s linear infinite}
+.rabiscos-presentes .giz-borboletas-2{top:58%;left:-18%;right:auto;width:13%;animation:butterflyTravel 21s linear infinite 7s}
+.rabiscos-presentes .giz-flor{left:auto;right:-6%;bottom:13%;width:9%}
+.rabiscos-presentes .giz-abelha{left:auto;right:-14%;top:70%;width:11%;animation:beeTravelBack 14s linear infinite}
+.rabiscos-presentes .giz-abelha-2{left:-15%;right:auto;top:41%;width:9%;animation:beeTravel 16s linear infinite 6s}
+.rabiscos-presentes .giz-giz{left:auto;right:2%;top:12%;bottom:auto;width:9%}
+.rabiscos-presentes .giz-joaninha{left:-6%;right:auto;bottom:5%;width:8%}
+
+@keyframes doodleBob{0%,100%{transform:translate3d(0,0,0) rotate(-3deg) scale(.98)}50%{transform:translate3d(0,-11px,0) rotate(4deg) scale(1.03)}}
+@keyframes doodleDrift{0%,100%{transform:translate3d(0,0,0) rotate(4deg)}50%{transform:translate3d(-17px,9px,0) rotate(-4deg)}}
+@keyframes doodleSway{0%,100%{transform:translate3d(0,0,0) rotate(-7deg)}50%{transform:translate3d(10px,-8px,0) rotate(7deg)}}
+@keyframes doodleFlutter{0%,100%{transform:translate3d(0,0,0) rotate(5deg)}25%{transform:translate3d(-9px,-5px,0) rotate(-3deg)}50%{transform:translate3d(6px,-10px,0) rotate(7deg)}75%{transform:translate3d(-5px,2px,0) rotate(-1deg)}}
+@keyframes doodleSpin{0%,100%{transform:rotate(-8deg) scale(.97)}50%{transform:rotate(7deg) scale(1.05)}}
+@keyframes doodleBee{0%,100%{transform:translate(0,0) rotate(-3deg)}20%{transform:translate(-13px,-6px) rotate(3deg)}40%{transform:translate(-2px,-15px) rotate(-1deg)}60%{transform:translate(12px,-7px) rotate(4deg)}80%{transform:translate(4px,0) rotate(-2deg)}}
+
+@keyframes applePeek{0%,100%{opacity:0;transform:translate3d(16px,-8px,0) rotate(-8deg)}25%,70%{opacity:.72;transform:translate3d(0,0,0) rotate(5deg)}85%{opacity:0;transform:translate3d(12px,7px,0) rotate(10deg)}}
+@keyframes rainbowFloat{0%,100%{opacity:0;transform:translate3d(-8px,0,0) rotate(-5deg)}20%,80%{opacity:.62;transform:translate3d(0,-6px,0) rotate(3deg)}90%{opacity:0;transform:translate3d(14px,8px,0) rotate(8deg)}}
+@keyframes butterflyTravel{0%{opacity:0;transform:translate3d(-12vw,18px,0) rotate(-10deg) scale(.9)}8%{opacity:.76}45%{opacity:.82;transform:translate3d(45vw,-34px,0) rotate(8deg) scale(1)}82%{opacity:.72}100%{opacity:0;transform:translate3d(122vw,18px,0) rotate(-5deg) scale(.92)}}
+@keyframes butterflyTravel2{0%{opacity:0;transform:translate3d(115vw,24px,0) scale(.9) rotate(12deg)}8%{opacity:.72}45%{opacity:.82;transform:translate3d(38vw,-18px,0) scale(1) rotate(-7deg)}82%{opacity:.7}100%{opacity:0;transform:translate3d(-35vw,12px,0) scale(.92) rotate(7deg)}}
+@keyframes butterflyTravelBack{0%{opacity:0;transform:translate3d(25vw,18px,0) scale(.92) rotate(8deg)}8%{opacity:.72}50%{opacity:.8;transform:translate3d(-52vw,-18px,0) scale(1) rotate(-4deg)}88%{opacity:.64}100%{opacity:0;transform:translate3d(-135vw,24px,0) scale(.9) rotate(6deg)}}
+@keyframes beeTravel{0%{opacity:0;transform:translate3d(-10vw,8px,0) scale(.88) rotate(-5deg)}10%{opacity:.84}32%{transform:translate3d(34vw,-18px,0) scale(1) rotate(5deg)}58%{transform:translate3d(58vw,8px,0) scale(.98) rotate(-3deg)}86%{opacity:.7}100%{opacity:0;transform:translate3d(122vw,-6px,0) scale(.9) rotate(6deg)}}
+@keyframes beeTravel2{0%{opacity:0;transform:translate3d(112vw,0,0) scale(.88) rotate(6deg)}10%{opacity:.78}38%{transform:translate3d(54vw,22px,0) scale(1) rotate(-4deg)}70%{transform:translate3d(22vw,-8px,0) scale(.98) rotate(4deg)}88%{opacity:.7}100%{opacity:0;transform:translate3d(-24vw,12px,0) scale(.9) rotate(-5deg)}}
+@keyframes beeTravelBack{0%{opacity:0;transform:translate3d(18vw,0,0) scale(.9) rotate(5deg)}10%{opacity:.78}40%{transform:translate3d(-30vw,18px,0) scale(1) rotate(-4deg)}75%{transform:translate3d(-80vw,-10px,0) scale(.95) rotate(5deg)}100%{opacity:0;transform:translate3d(-130vw,8px,0) scale(.88) rotate(-6deg)}}
+@keyframes flowerPeek{0%,100%{opacity:0;transform:translate3d(14px,4px,0) rotate(-8deg)}25%,75%{opacity:.65;transform:translate3d(0,-5px,0) rotate(6deg)}90%{opacity:0;transform:translate3d(8px,8px,0) rotate(10deg)}}
+@keyframes worldDrift{0%,100%{opacity:0;transform:translate3d(15px,12px,0) rotate(-5deg)}25%,75%{opacity:.56;transform:translate3d(0,-4px,0) rotate(4deg)}90%{opacity:0;transform:translate3d(-8px,10px,0) rotate(8deg)}}
+@keyframes crayonBob{0%,100%{opacity:.56;transform:translate3d(0,0,0) rotate(-4deg)}50%{opacity:.72;transform:translate3d(-6px,-9px,0) rotate(5deg)}}
+@keyframes ladybugTravel{0%{opacity:0;transform:translate3d(-8vw,0,0) rotate(-6deg)}10%{opacity:.7}40%{transform:translate3d(36vw,-8px,0) rotate(5deg)}75%{opacity:.7;transform:translate3d(72vw,6px,0) rotate(-3deg)}100%{opacity:0;transform:translate3d(118vw,-5px,0) rotate(7deg)}}
+
+@media(max-width:520px){
+  .rabisco{opacity:.0}
+  .giz-arco{width:15%}
+  .giz-borboletas{width:16%}
+  .giz-borboletas-2{width:13%}
+  .giz-abelha{width:11%}
+  .giz-abelha-2{width:9%}
+  .giz-giz{width:9%}
+  .giz-joaninha{width:8%}
+}
+@keyframes doodleBob{0%,100%{transform:translate3d(0,0,0) rotate(-3deg) scale(.98)}50%{transform:translate3d(0,-11px,0) rotate(4deg) scale(1.03)}}
+@keyframes doodleDrift{0%,100%{transform:translate3d(0,0,0) rotate(4deg)}50%{transform:translate3d(-17px,9px,0) rotate(-4deg)}}
+@keyframes doodleSway{0%,100%{transform:translate3d(0,0,0) rotate(-7deg)}50%{transform:translate3d(10px,-8px,0) rotate(7deg)}}
+@keyframes doodleFlutter{0%,100%{transform:translate3d(0,0,0) rotate(5deg)}25%{transform:translate3d(-9px,-5px,0) rotate(-3deg)}50%{transform:translate3d(6px,-10px,0) rotate(7deg)}75%{transform:translate3d(-5px,2px,0) rotate(-1deg)}}
+@keyframes doodleSpin{0%,100%{transform:rotate(-8deg) scale(.97)}50%{transform:rotate(7deg) scale(1.05)}}
+@keyframes doodleBee{0%,100%{transform:translate(0,0) rotate(-3deg)}20%{transform:translate(-13px,-6px) rotate(3deg)}40%{transform:translate(-2px,-15px) rotate(-1deg)}60%{transform:translate(12px,-7px) rotate(4deg)}80%{transform:translate(4px,0) rotate(-2deg)}}
+
+@keyframes entrada{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}50%{box-shadow:0 0 0 16px rgba(255,255,255,.30)}}
+@keyframes flutuar{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+@keyframes solVivo{0%,100%{transform:rotate(-3deg) scale(1)}50%{transform:rotate(3deg) scale(1.035)}}
+@keyframes coracaoVivo{0%,100%{transform:scale(.92) rotate(-8deg)}50%{transform:scale(1.08) rotate(6deg)}}
+@keyframes botaoRespira{0%,100%{filter:brightness(1)}50%{filter:brightness(1.035)}}
+@keyframes nuvem1{from{transform:translateX(0)}to{transform:translateX(150vw)}}
+@keyframes nuvem2{from{transform:translateX(0)}to{transform:translateX(-125vw)}}
+@keyframes nuvem3{from{transform:translateX(0)}to{transform:translateX(150vw)}}
+@keyframes nuvem4{from{transform:translateX(0)}to{transform:translateX(-130vw)}}
+@media(min-width:601px){.convite{box-shadow:0 0 50px rgba(70,110,120,.16)}}
+@media(max-width:520px){.acoes{gap:12px}.botao{min-height:98px;padding:13px 12px 13px 10px;border-radius:29px}.icone{flex-basis:52px;width:52px;height:52px}.texto-botao{font-size:18px}.seta{font-size:39px}.contador{width:74%;padding:7px 10px 9px}.box{min-width:53px;padding:8px 2px 7px}.box strong{font-size:20px}.contador-numeros{gap:5px}.coracao-gif{width:38px;height:38px}.coracao-esq{left:-26px}.coracao-dir{right:-26px}}
+@media(max-width:390px){.botao{min-height:92px}.texto-botao{font-size:16px}.icone{flex-basis:47px;width:47px;height:47px}.circular-check{font-size:31px}.gift{font-size:24px}.seta{font-size:34px}.contador{width:78%}.box{min-width:48px}.box strong{font-size:18px}.box span{font-size:7px}.separador{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

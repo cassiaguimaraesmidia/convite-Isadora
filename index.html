@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eaf7fb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Convite da Isadora — 5 anos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="convite" aria-label="Convite interativo da Isadora">
+  <section id="tela-logo" class="tela tela-logo ativa" aria-hidden="false">
+    <img class="logo" src="imagens/logo-marca.png" alt="Feito com carinho por Cassia">
+  </section>
+
+  <section id="tela-inicial" class="tela tela-inicial" aria-hidden="true">
+    <video id="video-preview" class="video-preview" src="imagens/abertura.mp4" preload="auto" muted playsinline></video>
+    <img class="solzinho solzinho-animado" src="imagens/solzinho.gif" alt="">
+    <button id="abrir-convite" class="paleta-hotspot" type="button" aria-label="Clique na paleta para abrir o convite">
+      <span class="pulso"></span>
+      <span class="dica">Toque na paleta para abrir ✨</span>
+    </button>
+  </section>
+
+  <section id="tela-video" class="tela tela-video" aria-hidden="true">
+    <video id="video-abertura" class="video-abertura" src="imagens/abertura.mp4" preload="auto" playsinline></video>
+    <button id="pular-video" class="pular-video" type="button">Pular abertura ›</button>
+  </section>
+
+  <section id="tela-data" class="tela tela-data" aria-hidden="true">
+    <video id="video-data" class="video-data" src="imagens/fundo-data.mp4" preload="auto" muted playsinline loop aria-hidden="true"></video>
+    <div class="nuvens" aria-hidden="true">
+      <img class="nuvem n1" src="imagens/nuvem1.png" alt="">
+      <img class="nuvem n2" src="imagens/nuvem2.png" alt="">
+      <img class="nuvem n3" src="imagens/nuvem3.png" alt="">
+      <img class="nuvem n4" src="imagens/nuvem4.png" alt="">
+    </div>
+    <div id="contador" class="contador" aria-label="Contagem regressiva para a festa">
+      <div class="contador-titulo">FALTAM</div>
+      <div class="contador-numeros">
+        <div class="box box-pink"><strong id="dias">00</strong><span>DIAS</span></div>
+        <span class="separador">:</span>
+        <div class="box box-yellow"><strong id="horas">00</strong><span>HORAS</span></div>
+        <span class="separador">:</span>
+        <div class="box box-blue"><strong id="minutos">00</strong><span>MIN</span></div>
+        <span class="separador">:</span>
+        <div class="box box-purple"><strong id="segundos">00</strong><span>SEG</span></div>
+      </div>
+      <img class="coracao-gif coracao-esq" src="imagens/coracao.gif" alt="">
+      <img class="coracao-gif coracao-dir" src="imagens/coracao.gif" alt="">
+    </div>
+    <div class="rabiscos" aria-hidden="true">
+      <img class="rabisco giz-sol" src="imagens/giz1.png" alt="">
+      <img class="rabisco giz-maca" src="imagens/giz2.png" alt="">
+      <img class="rabisco giz-arco" src="imagens/giz3.png" alt="">
+      <img class="rabisco giz-borboletas" src="imagens/giz4.png" alt="">
+      <img class="rabisco giz-borboletas giz-borboletas-2" src="imagens/giz4.png" alt="">
+      <img class="rabisco giz-flor" src="imagens/giz5.png" alt="">
+      <img class="rabisco giz-mundo" src="imagens/giz6.png" alt="">
+      <img class="rabisco giz-abelha" src="imagens/giz7.png" alt="">
+      <img class="rabisco giz-abelha giz-abelha-2" src="imagens/giz7.png" alt="">
+      <img class="rabisco giz-giz" src="imagens/giz8.png" alt="">
+      <img class="rabisco giz-joaninha" src="imagens/giz9.png" alt="">
+    </div>
+
+    <div class="acoes">
+      <button id="btn-confirmar" class="botao botao-pink" type="button" aria-label="Confirmar sua presença">
+        <span class="icone circular-check">✓</span>
+        <span class="texto-botao">Confirmar<br>sua presença</span>
+        <span class="seta">›</span>
+      </button>
+      <button id="btn-presentes" class="botao botao-blue" type="button" aria-label="Ver sugestão de presente">
+        <span class="icone gift">🎁</span>
+        <span class="texto-botao">Sugestão<br>de presente</span>
+        <span class="seta">›</span>
+      </button>
+    </div>
+  </section>
+
+  <section id="tela-presentes" class="tela tela-presentes" aria-hidden="true">
+    <img class="arte-presentes" src="imagens/presentes.png" alt="Sugestões de presentes para Isadora">
+    <div class="nuvens nuvens-presentes" aria-hidden="true">
+      <img class="nuvem n1" src="imagens/nuvem1.png" alt="">
+      <img class="nuvem n3" src="imagens/nuvem3.png" alt="">
+    </div>
+    <div class="rabiscos rabiscos-presentes" aria-hidden="true">
+      <img class="rabisco giz-arco" src="imagens/giz3.png" alt="">
+      <img class="rabisco giz-borboletas" src="imagens/giz4.png" alt="">
+      <img class="rabisco giz-borboletas giz-borboletas-2" src="imagens/giz4.png" alt="">
+      <img class="rabisco giz-flor" src="imagens/giz5.png" alt="">
+      <img class="rabisco giz-abelha" src="imagens/giz7.png" alt="">
+      <img class="rabisco giz-abelha giz-abelha-2" src="imagens/giz7.png" alt="">
+      <img class="rabisco giz-giz" src="imagens/giz8.png" alt="">
+      <img class="rabisco giz-joaninha" src="imagens/giz9.png" alt="">
+    </div>
+    <button id="presente-calcado" class="area-presente calcado" type="button" aria-label="Calçado tamanho 26"></button>
+    <button id="presente-roupas" class="area-presente roupas" type="button" aria-label="Roupas tamanho 6 ou 8"></button>
+    <button id="presente-livros" class="area-presente livros" type="button" aria-label="Livros de valores cristãos"></button>
+    <button id="presente-brinquedos" class="area-presente brinquedos" type="button" aria-label="Brinquedos educativos"></button>
+    <button id="voltar-data" class="voltar" type="button">‹ Voltar</button>
+  </section>
+
+  <button id="controle-musica" class="controle-musica" type="button" aria-label="Pausar música" hidden>♫</button>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
